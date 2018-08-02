@@ -1,0 +1,18 @@
+version: "3"
+services:
+  postgres:
+    image: postgres:9.6
+    environment:
+      POSTGRES_DB: ats_registry
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - 5432:5432
+    volumes:
+      - pgdb_data:/var/postgresql/data
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+volumes:
+  pgdb_data:
